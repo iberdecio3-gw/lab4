@@ -51,31 +51,32 @@ Note: Install pandas if needed
          
 
 2. Write SQL queries to:
-- For each patient and each of these five genes (TP53, KRAS, EGFR, STK11, KEAP1), count the protein-altering mutations (exclude Silent).:
-   *Expected: 566 patieents x 5 genes = 2,830
-   Acutal: 2,830*
-- Count patients per tissue source site per tumor stage.
-    *Expected: One row per tissue + tumor - I did not have a number guess.
-   Acutal: 142*
-- For each query, record the row count you expected and the row count you got (Week 8, habit 1). If they differ, explain why.
+
+    - For each patient and each of these five genes (TP53, KRAS, EGFR, STK11, KEAP1), count the protein-altering mutations (exclude Silent).:
+        *Expected: 566 patieents x 5 genes = 2,830
+         Acutal: 2,830*
+    - Count patients per tissue source site per tumor stage.
+        *Expected: One row per tissue + tumor - I did not have a number guess.
+         Acutal: 142*
+    - For each query, record the row count you expected and the row count you got (Week 8, habit 1). If they differ, explain why.
 
 3. Build a feature table: one row per patient (566 rows), with columns for sex, age at diagnosis, stage, tissue source site, tumor mutation burden, and one column per gene from Task 2 (its protein-altering mutation count). Do this by combining SQL (for the querying/joining) with Python or R scripting (for reshaping into wide format), not pure SQL pivoting.
- - See build_feature.py
- - Script combined patient info, tumor info, and gene info.
- - 566 patients, 11 columns, one row per patient
- - Results is saved in feature_table.tsv
+   - See build_feature.py
+   - Script combined patient info, tumor info, and gene info.
+   - 566 patients, 11 columns, one row per patient
+   - Results is saved in feature_table.tsv
 
 4. Handle missing data explicitly: some patients lack sex, age, or stage, and most patients have no mutation in any given gene. Document how you handled each kind of gap (e.g., left join and keep the NA, not silently dropping patients). Show the patient count before and after your joins so a reader can see no one was lost by accident. A gene count of zero and a missing value mean different things; say which one you used and why.
-- Missing data was checked for using feature_table.isna().sum().
+  - Missing data was checked for using feature_table.isna().sum().
 <img width="279" height="262" alt="Screenshot 2026-10-30 at 8 03 03 PM" src="https://github.com/user-attachments/assets/95f7faee-0a17-43fe-9e6b-69a081d0baaa" />
 
-Patients before joins: 566
-Patients after joins: 566
-Unique patients: 566
+  - Patients before joins: 566
+  - Patients after joins: 566
+  - Unique patients: 566
 
-For gene counts I used zero to represent no mutations that qualified, rather than NA which means missing data entirely. 
+  - For gene counts I used zero to represent no mutations that qualified, rather than NA which means missing data entirely. 
 
 6. Metadata: produce a small data dictionary (column name, meaning, units, source table) for your final feature table.
 
- - Data dictionary saved as .csv [data_dictionary.csv]
+   - Data dictionary saved as .csv [data_dictionary.csv]
    
