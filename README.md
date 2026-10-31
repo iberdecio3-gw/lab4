@@ -67,13 +67,14 @@ Note: Install pandas if needed
    - Results is saved in feature_table.tsv
 
 4. Handle missing data explicitly: some patients lack sex, age, or stage, and most patients have no mutation in any given gene. Document how you handled each kind of gap (e.g., left join and keep the NA, not silently dropping patients). Show the patient count before and after your joins so a reader can see no one was lost by accident. A gene count of zero and a missing value mean different things; say which one you used and why.
+  
   - Missing data was checked for using feature_table.isna().sum().
-<img width="279" height="262" alt="Screenshot 2026-10-30 at 8 03 03 PM" src="https://github.com/user-attachments/assets/95f7faee-0a17-43fe-9e6b-69a081d0baaa" />
+  
+  <img width="279" height="262" alt="Screenshot 2026-10-30 at 8 03 03 PM" src="https://github.com/user-attachments/assets/95f7faee-0a17-43fe-9e6b-69a081d0baaa" />
 
   - Patients before joins: 566
   - Patients after joins: 566
   - Unique patients: 566
-
   - For gene counts I used zero to represent no mutations that qualified, rather than NA which means missing data entirely. 
 
 6. Metadata: produce a small data dictionary (column name, meaning, units, source table) for your final feature table.
